@@ -1,0 +1,68 @@
+/* ------------------------------- 
+             $Base 
+   ------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  padding: 6px;
+}
+
+.todo {
+  /* font-size: 14px; */
+}
+
+input.todo__item {
+  color: #222;
+  font-size: 14px;
+  padding: 8px;
+  margin: 10px 0;
+  border: 1px solid #B1BEC1;
+  border-radius: 8px;
+  outline: none;
+  /* flex: 1 0 250px; */
+}
+
+input.todo__item:focus {
+  border: 1px solid #0d44a8;
+}
+
+
+.todo__btn {
+  appearance: none;
+  border: 1px solid transparent;
+  font-size: 14px;
+  padding: 8px 12px;
+  background-color: #0d44a8;
+  color: #fff;
+  border-radius: 4px;
+}
+
+.todo__btn:hover {
+  border: 1px solid #0d44a8;
+  background-color: #fff;
+  color: #222;
+  cursor: pointer;
+}
+
+
+.icon-delete {
+  cursor: pointer;
+  margin-left: auto;
+}
