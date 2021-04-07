@@ -49,19 +49,18 @@ const showData = async () => {
   createListItem(data);
 };
 
-
 // when users clicks add button
 // get the value of input field and store it in the database
 addButton.addEventListener("click", async () => {
-  const todo = { description: todoItem.value, done: false };
-  await postData(todo);
-  
-  // clear the input field
-  todoItem.value = "";
+  // prevent adding empty todo items
+  if (todoItem.value !== "") {
+    const todo = { description: todoItem.value, done: false };
+    await postData(todo);
+
+    // clear the input field
+    todoItem.value = "";
+  }
 });
-
-
-
 
 
 // when users clicks delete icon, remove item from database
@@ -82,7 +81,6 @@ const deleteTodo = async (event) => {
     await deleteData(id);
   }
 };
-
 
 // check if something in the todoList is clicked
 todoList.addEventListener("click", deleteTodo);
