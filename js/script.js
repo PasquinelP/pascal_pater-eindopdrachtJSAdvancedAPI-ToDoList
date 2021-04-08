@@ -27,15 +27,28 @@ const createListItem = (items) => {
     // create li element with id of todo-item
     const todoItem = document.createElement("li");
     todoItem.id = id;
+    todoItem.classList.add("todo-list__item");
 
     // create span element with description of todo-item
     const todoItemText = document.createElement("span");
     todoItemText.innerHTML = description;
+    todoItemText.classList.add("todo-list__description");
 
     // create delete icon image
     const deleteIcon = createImgElement();
 
+    // create checkbox to mark a todo as done
+    const checkBox = document.createElement("input");
+    checkBox.type = "checkbox";
+    checkBox.classList.add("todo-list__check");
+
+    if (done === true) {
+      todoItemText.classList.add("todo-list__item--done");
+      checkBox.checked = true;
+    }
+
     // append all created elements
+    todoItem.appendChild(checkBox);
     todoItem.appendChild(todoItemText);
     todoItem.appendChild(deleteIcon);
     todoList.appendChild(todoItem);
@@ -44,14 +57,16 @@ const createListItem = (items) => {
 
 // use data from api
 // use the correct key-value and show within the html element
-const showData = async () => {
+const showTodo = async () => {
   const data = await getData();
   createListItem(data);
 };
 
 // when users clicks add button
 // get the value of input field and store it in the database
-addButton.addEventListener("click", async () => {
+addButton.addEventListener("click", async (event) => {
+  // prevent default behaviour of <form> element
+  event.preventDefault();
   // prevent adding empty todo items
   if (todoItem.value !== "") {
     const todo = { description: todoItem.value, done: false };
@@ -82,8 +97,32 @@ const deleteTodo = async (event) => {
   }
 };
 
-// check if something in the todoList is clicked
+
+
+
+const updateTodo = async (event) => {
+
+  if (event.target && event.target.classList.contains("todo-list__check")) {
+
+    const content = event.target.nextSibling.textContent;
+    console.log(content);
+    const id = event.target.parentNode.id;
+    if (event.target.checked) {
+      console.log("Hee I am checked sir!");
+      await updateData(id, { description: content, done: true });
+    } else if (!event.target.checked) {
+      console.log("Hee, I am unchecked!");
+      await updateData(id, { description: content, done: false });
+    };
+    
+  };
+};
+
+// check if delete icon in the todoList is clicked
 todoList.addEventListener("click", deleteTodo);
 
+// check if checkbox in the todoList is clicked
+todoList.addEventListener("change", updateTodo);
+
 // call functions
-showData();
+showTodo();
