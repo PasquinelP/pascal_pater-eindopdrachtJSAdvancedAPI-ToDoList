@@ -43,7 +43,6 @@ input.todo__item:focus {
   border: 1px solid #0d44a8;
 }
 
-
 .todo__btn {
   appearance: none;
   border: 1px solid transparent;
@@ -66,3 +65,26 @@ input.todo__item:focus {
   cursor: pointer;
   margin-left: auto;
 }
+
+.todo-list {
+
+}
+
+
+.todo-list__item {
+
+}
+
+.todo-list__item--done {
+  text-decoration: line-through;
+}
+
+.todo-list__check {
+
+}
+
+.todo-list__description {
+
+}
+
+ 
