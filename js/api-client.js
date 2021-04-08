@@ -48,3 +48,18 @@ const deleteData = async (id) => {
   }
 };
 
+
+const updateData = async (id, data) => {
+  const apiEndpoint = apiUrl + id;
+  try {
+    await fetch(apiEndpoint, {
+      method: "PUT",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  } catch (error) {
+    console.log("The following went wrong: ", error);
+  }
+};
