@@ -1,6 +1,10 @@
 /* ------------------------------- 
-             $Base 
+    Eindopdracht Pascal Pater
+  Javascript Async/API - ToDo List
    ------------------------------- */
+
+
+/* Base */
 
 *,
 *::before,
@@ -11,6 +15,16 @@
 html,
 body {
   font-family: Arial, Helvetica, sans-serif;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+main {
+    padding: 10px 20px;
+}
+
+h1 {
+  text-align: center;
 }
 
 ul {
@@ -24,11 +38,13 @@ li {
   padding: 6px;
 }
 
+/* Add new todo form */
+
 .todo {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  max-width: 500px;
+  /* max-width: 500px; */
 }
 
 input.todo__item {
@@ -65,14 +81,10 @@ input.todo__item:focus {
   cursor: pointer;
 }
 
-
-.icon-delete {
-  cursor: pointer;
-  margin-left: auto;
-}
+/* Todo list */
 
 .todo-list {
-  max-width: 500px;
+  /* max-width: 500px; */
 }
 
 
@@ -88,8 +100,20 @@ input.todo__item:focus {
   margin-right: 8px;
 }
 
-.todo-list__description {
-
+.todo-list__description:hover + .todo-list__hint{
+  display: inline;
 }
 
+.todo-list__hint {
+  font-size: 12px;
+  font-style: italic;
+  margin-left: 14px;
+  padding-top: 2px;
+  display: none;
+}
+
+.icon-delete {
+  cursor: pointer;
+  margin-left: auto;
+}
  

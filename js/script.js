@@ -34,6 +34,11 @@ const createListItem = (items) => {
     todoItemText.innerHTML = description;
     todoItemText.classList.add("todo-list__description");
 
+    // create span element with hint text that shows on hover of todo text
+    const hintText = document.createElement("span");
+    hintText.textContent = "Click text to edit, enter to save changes";
+    hintText.classList.add("todo-list__hint");
+
     // create delete icon image
     const deleteIcon = createImgElement();
 
@@ -52,6 +57,7 @@ const createListItem = (items) => {
     // append all created elements
     todoItem.appendChild(checkBox);
     todoItem.appendChild(todoItemText);
+    todoItem.appendChild(hintText);
     todoItem.appendChild(deleteIcon);
     todoList.appendChild(todoItem);
   });
@@ -132,6 +138,7 @@ const updateTodo = async (event) => {
 };
 
 
+// Event listeners
 
 // check if add button is clicked to add new todo
 addButton.addEventListener("click", newTodo);
@@ -144,12 +151,13 @@ todoItem.addEventListener("keydown", (event) => {
   }
 });
 
-
 // check if delete icon in the todoList is clicked
 todoList.addEventListener("click", deleteTodo);
 
 // check if checkbox in the todoList is clicked
 todoList.addEventListener("change", updateTodo);
 
-// call functions
+
+// Function calls
+
 showTodo();
