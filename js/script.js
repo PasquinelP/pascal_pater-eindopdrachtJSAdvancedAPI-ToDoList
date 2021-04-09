@@ -13,6 +13,12 @@ const createImgElement = () => {
   deleteIcon.src = "img/delete.svg";
   deleteIcon.alt = "Delete todo item";
   deleteIcon.classList.add("icon-delete");
+  deleteIcon.addEventListener("mouseover", () => {
+    deleteIcon.src = "img/delete-hover.svg";
+  });
+  deleteIcon.addEventListener("mouseout", () => {
+    deleteIcon.src = "img/delete.svg";
+  });
   return deleteIcon;
 };
 
@@ -109,7 +115,7 @@ const deleteTodo = async (event) => {
 // when users updates a todo-item, update item in database
 // use event delegation to see which checkbox is checked
 // catch the event
-const updateTodo = async (event) => {
+const updateDoneTodo = async (event) => {
   // get the clicked target with event.target
   // and check if the item clicked was indeed the checkbox
   if (event.target && event.target.classList.contains("todo-list__check")) {
@@ -159,9 +165,6 @@ const updateTextTodo = async (event) => {
         const content = event.target.textContent;
         console.log(content);
 
-        // remove focus
-        // event.target.blur();
-
         // set description to updated text
         await updateData(id, { description: content });
       }
@@ -169,7 +172,6 @@ const updateTextTodo = async (event) => {
   }
 };
 
-todoList.addEventListener("click", updateTextTodo);
 
 // Event listeners
 
@@ -188,7 +190,10 @@ todoItem.addEventListener("keydown", (event) => {
 todoList.addEventListener("click", deleteTodo);
 
 // check if checkbox in the todoList is clicked
-todoList.addEventListener("change", updateTodo);
+todoList.addEventListener("change", updateDoneTodo);
+
+// check if text of todo item is clicked
+todoList.addEventListener("click", updateTextTodo);
 
 
 // Function calls
