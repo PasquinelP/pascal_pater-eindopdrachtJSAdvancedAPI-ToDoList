@@ -99,23 +99,36 @@ const deleteTodo = async (event) => {
 
 
 
-
+// when users updates a todo-item, update item in database
+// use event delegation to see which checkbox is checked
+// catch the event
 const updateTodo = async (event) => {
-
+  // get the clicked target with event.target
+  // and check if the item clicked was indeed the checkbox
   if (event.target && event.target.classList.contains("todo-list__check")) {
-
+    
+    // get the text of the span element next to the clicked checkbox
     const content = event.target.nextSibling.textContent;
     console.log(content);
+    
+    // get the id of the parent of the checkbox clicked
     const id = event.target.parentNode.id;
+    
+    // see if the checkbox is checked
     if (event.target.checked) {
       console.log("Hee I am checked sir!");
+    
+      // set done status to true
       await updateData(id, { description: content, done: true });
+    
+      // see if the checkbox is unchecked
     } else if (!event.target.checked) {
       console.log("Hee, I am unchecked!");
-      await updateData(id, { description: content, done: false });
-    };
     
-  };
+      // set done status to false
+      await updateData(id, { description: content, done: false });
+    }
+  }
 };
 
 // check if delete icon in the todoList is clicked
