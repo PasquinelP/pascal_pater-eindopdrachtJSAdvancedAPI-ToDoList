@@ -33,6 +33,7 @@ const createListItem = (items) => {
     const todoItemText = document.createElement("span");
     todoItemText.innerHTML = description;
     todoItemText.classList.add("todo-list__description");
+    todoItemText.contentEditable = true;
 
     // create span element with hint text that shows on hover of todo text
     const hintText = document.createElement("span");
@@ -137,6 +138,38 @@ const updateTodo = async (event) => {
   }
 };
 
+// when user updates text of todo item, send updated text to database
+// use event delegation to see which todo text is clicked
+// catch the event
+const updateTextTodo = async (event) => {
+  // get the clicked target with event.target
+  // and check if the item clicked was indeed the text of todo
+  if (event.target && event.target.classList.contains("todo-list__description")) {
+    // get the id of the parent of the todo text clicked
+    const id = event.target.parentNode.id;
+    console.log(id);
+
+    event.target.addEventListener("keydown", async (event) => {
+      if (event.key == "Enter") {
+        // prevent line breaks appearing in todo text
+        // use enter pure for sending edited text to database
+        event.preventDefault();
+
+        // get the updated text of the todo item
+        const content = event.target.textContent;
+        console.log(content);
+
+        // remove focus
+        // event.target.blur();
+
+        // set description to updated text
+        await updateData(id, { description: content });
+      }
+    });
+  }
+};
+
+todoList.addEventListener("click", updateTextTodo);
 
 // Event listeners
 
