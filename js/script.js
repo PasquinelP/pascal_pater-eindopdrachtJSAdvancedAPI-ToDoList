@@ -42,6 +42,8 @@ const createListItem = (items) => {
     checkBox.type = "checkbox";
     checkBox.classList.add("todo-list__check");
 
+    // check if todo item has status done
+    // cross out todo item and set checkbox as checked
     if (done === true) {
       todoItemText.classList.add("todo-list__item--done");
       checkBox.checked = true;
@@ -62,9 +64,7 @@ const showTodo = async () => {
   createListItem(data);
 };
 
-// when users clicks add button
-// get the value of input field and store it in the database
-addButton.addEventListener("click", async (event) => {
+const newTodo = async (event) => {
   // prevent default behaviour of <form> element
   event.preventDefault();
   // prevent adding empty todo items
@@ -75,7 +75,7 @@ addButton.addEventListener("click", async (event) => {
     // clear the input field
     todoItem.value = "";
   }
-});
+}
 
 
 // when users clicks delete icon, remove item from database
@@ -130,6 +130,20 @@ const updateTodo = async (event) => {
     }
   }
 };
+
+
+
+// check if add button is clicked to add new todo
+addButton.addEventListener("click", newTodo);
+
+// listen for Enter in input new todo field
+// send value to newTodo function
+todoItem.addEventListener("keydown", (event) => {
+  if (event.key == "Enter") {
+    newTodo();
+  }
+});
+
 
 // check if delete icon in the todoList is clicked
 todoList.addEventListener("click", deleteTodo);
