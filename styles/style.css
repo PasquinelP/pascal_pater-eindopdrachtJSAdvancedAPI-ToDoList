@@ -32,12 +32,6 @@ ul {
   padding: 0;
 }
 
-li {
-  display: flex;
-  align-items: center;
-  padding: 6px;
-}
-
 /* Add new todo form */
 
 .todo {
@@ -89,7 +83,9 @@ input.todo__item:focus {
 
 
 .todo-list__item {
-
+  display: flex;
+  align-items: center;
+  padding: 6px;
 }
 
 .todo-list__item--done {
@@ -98,6 +94,10 @@ input.todo__item:focus {
 
 .todo-list__check {
   margin-right: 8px;
+}
+
+.todo-list__description {
+  caret-color: red;
 }
 
 .todo-list__description:hover + .todo-list__hint{
