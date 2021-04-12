@@ -38,7 +38,6 @@ ul {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  /* max-width: 500px; */
 }
 
 input.todo__item {
@@ -76,11 +75,6 @@ input.todo__item:focus {
 }
 
 /* Todo list */
-
-.todo-list {
-  /* max-width: 500px; */
-}
-
 
 .todo-list__item {
   display: flex;
