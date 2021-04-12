@@ -101,11 +101,9 @@ const deleteTodo = async (event) => {
   // get the clicked target with event.target
   // and check if the item clicked was indeed the delete icon
   if (event.target && event.target.classList.contains("icon-delete")) {
-    console.log("Icon delete was clicked!");
 
     // get the id of the parent of the delete icon clicked (which is the li element which on its turn holds the unique id of the todo item)
     const id = event.target.parentNode.id;
-    console.log(id);
 
     // call the deleteData function with the id of the element to be deleted
     await deleteData(id);
@@ -122,21 +120,18 @@ const updateDoneTodo = async (event) => {
     
     // get the text of the span element next to the clicked checkbox
     const content = event.target.nextSibling.textContent;
-    console.log(content);
 
     // get the id of the parent of the checkbox clicked
     const id = event.target.parentNode.id;
 
     // see if the checkbox is checked
     if (event.target.checked) {
-      console.log("Hee I am checked sir!");
 
       // set done status to true
       await updateData(id, { description: content, done: true });
 
       // see if the checkbox is unchecked
     } else if (!event.target.checked) {
-      console.log("Hee, I am unchecked!");
 
       // set done status to false
       await updateData(id, { description: content, done: false });
@@ -153,7 +148,6 @@ const updateTextTodo = async (event) => {
   if (event.target && event.target.classList.contains("todo-list__description")) {
     // get the id of the parent of the todo text clicked
     const id = event.target.parentNode.id;
-    console.log(id);
 
     // when user hits Enter,
     // the updated todo item text is stored in the database
@@ -165,7 +159,6 @@ const updateTextTodo = async (event) => {
 
         // get the updated text of the todo item
         const content = event.target.textContent;
-        console.log(content);
 
         // set description to updated text
         await updateData(id, { description: content });
