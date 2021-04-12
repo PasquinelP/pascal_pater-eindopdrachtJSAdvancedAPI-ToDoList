@@ -13,6 +13,8 @@ const createImgElement = () => {
   deleteIcon.src = "img/delete.svg";
   deleteIcon.alt = "Delete todo item";
   deleteIcon.classList.add("icon-delete");
+
+  // change img on mouseover/mouseout
   deleteIcon.addEventListener("mouseover", () => {
     deleteIcon.src = "img/delete-hover.svg";
   });
@@ -22,7 +24,8 @@ const createImgElement = () => {
   return deleteIcon;
 };
 
-// create list items with todo item and delete icon
+// create list items with todo item, checkbox
+// hint text and delete icon
 const createListItem = (items) => {
   items.forEach((item) => {
     // get object values
@@ -88,8 +91,7 @@ const newTodo = async (event) => {
     // clear the input field
     todoItem.value = "";
   }
-}
-
+};
 
 // when users clicks delete icon, remove item from database
 // use event delegation, because we can not select the delete icon directly (because the list changes everytime)
@@ -104,13 +106,11 @@ const deleteTodo = async (event) => {
     // get the id of the parent of the delete icon clicked (which is the li element which on its turn holds the unique id of the todo item)
     const id = event.target.parentNode.id;
     console.log(id);
-    
+
     // call the deleteData function with the id of the element to be deleted
     await deleteData(id);
   }
 };
-
-
 
 // when users updates a todo-item, update item in database
 // use event delegation to see which checkbox is checked
@@ -123,21 +123,21 @@ const updateDoneTodo = async (event) => {
     // get the text of the span element next to the clicked checkbox
     const content = event.target.nextSibling.textContent;
     console.log(content);
-    
+
     // get the id of the parent of the checkbox clicked
     const id = event.target.parentNode.id;
-    
+
     // see if the checkbox is checked
     if (event.target.checked) {
       console.log("Hee I am checked sir!");
-    
+
       // set done status to true
       await updateData(id, { description: content, done: true });
-    
+
       // see if the checkbox is unchecked
     } else if (!event.target.checked) {
       console.log("Hee, I am unchecked!");
-    
+
       // set done status to false
       await updateData(id, { description: content, done: false });
     }
@@ -155,6 +155,8 @@ const updateTextTodo = async (event) => {
     const id = event.target.parentNode.id;
     console.log(id);
 
+    // when user hits Enter,
+    // the updated todo item text is stored in the database
     event.target.addEventListener("keydown", async (event) => {
       if (event.key == "Enter") {
         // prevent line breaks appearing in todo text
