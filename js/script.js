@@ -118,9 +118,6 @@ const updateDoneTodo = async (event) => {
   // and check if the item clicked was indeed the checkbox
   if (event.target && event.target.classList.contains("todo-list__check")) {
     
-    // get the text of the span element next to the clicked checkbox
-    const content = event.target.nextSibling.textContent;
-
     // get the id of the parent of the checkbox clicked
     const id = event.target.parentNode.id;
 
@@ -128,13 +125,13 @@ const updateDoneTodo = async (event) => {
     if (event.target.checked) {
 
       // set done status to true
-      await updateData(id, { description: content, done: true });
+      await updateData(id, { done: true });
 
       // see if the checkbox is unchecked
     } else if (!event.target.checked) {
 
       // set done status to false
-      await updateData(id, { description: content, done: false });
+      await updateData(id, { done: false });
     }
   }
 };
