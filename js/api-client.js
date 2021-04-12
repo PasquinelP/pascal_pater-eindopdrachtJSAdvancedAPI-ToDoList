@@ -6,6 +6,8 @@ const apiUrl = "http://localhost:3000/";
 
 // use async/await to fetch data from api
 // use according to api documentation
+
+// GET
 const getData = async () => {
   const apiEndpoint = apiUrl;
   try {
@@ -22,6 +24,7 @@ const getData = async () => {
   }
 };
 
+// POST
 const postData = async (data) => {
   const apiEndpoint = apiUrl;
   try {
@@ -37,6 +40,7 @@ const postData = async (data) => {
   }
 };
 
+// DELETE
 const deleteData = async (id) => {
   const apiEndpoint = apiUrl + id;
   try {
@@ -48,7 +52,7 @@ const deleteData = async (id) => {
   }
 };
 
-
+// PUT
 const updateData = async (id, data) => {
   const apiEndpoint = apiUrl + id;
   try {
