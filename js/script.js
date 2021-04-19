@@ -24,9 +24,35 @@ const createImgElement = () => {
   return deleteIcon;
 };
 
+// create span element with description of todo-item
+const createSpanTodoItemText = (description) => {
+  const todoItemText = document.createElement("span");
+  todoItemText.innerHTML = description;
+  todoItemText.classList.add("todo-list__description");
+  todoItemText.contentEditable = true;
+  return todoItemText;
+};
+
+// create span element with hint text
+const createSpanHintText = () => {
+  const hintText = document.createElement("span");
+  hintText.textContent = "Click text to edit, enter to save changes";
+  hintText.classList.add("todo-list__hint");
+  return hintText;
+};
+
+// create checkbox to mark a todo as done
+const createCheckBoxElement = () => {
+  const checkBox = document.createElement("input");
+  checkBox.type = "checkbox";
+  checkBox.classList.add("todo-list__check");
+  return checkBox;
+};
+
 // create list items with todo item, checkbox
 // hint text and delete icon
 const createListItem = (items) => {
+  todoList.innerHTML = "";
   items.forEach((item) => {
     // get object values
     const description = item.description;
@@ -39,23 +65,16 @@ const createListItem = (items) => {
     todoItem.classList.add("todo-list__item");
 
     // create span element with description of todo-item
-    const todoItemText = document.createElement("span");
-    todoItemText.innerHTML = description;
-    todoItemText.classList.add("todo-list__description");
-    todoItemText.contentEditable = true;
+    const todoItemText = createSpanTodoItemText(description);
 
     // create span element with hint text that shows on hover of todo text
-    const hintText = document.createElement("span");
-    hintText.textContent = "Click text to edit, enter to save changes";
-    hintText.classList.add("todo-list__hint");
+    const hintText = createSpanHintText();
 
     // create delete icon image
     const deleteIcon = createImgElement();
 
     // create checkbox to mark a todo as done
-    const checkBox = document.createElement("input");
-    checkBox.type = "checkbox";
-    checkBox.classList.add("todo-list__check");
+    const checkBox = createCheckBoxElement();
 
     // check if todo item has status done
     // cross out todo item and set checkbox as checked
@@ -87,7 +106,7 @@ const newTodo = async (event) => {
   if (todoItem.value !== "") {
     const todo = { description: todoItem.value, done: false };
     await postData(todo);
-
+    showTodo();
     // clear the input field
     todoItem.value = "";
   }
@@ -107,6 +126,7 @@ const deleteTodo = async (event) => {
 
     // call the deleteData function with the id of the element to be deleted
     await deleteData(id);
+    showTodo();
   }
 };
 
@@ -133,6 +153,7 @@ const updateDoneTodo = async (event) => {
       // set done status to false
       await updateData(id, { done: false });
     }
+    showTodo();
   }
 };
 
@@ -159,6 +180,7 @@ const updateTextTodo = async (event) => {
 
         // set description to updated text
         await updateData(id, { description: content });
+        showTodo();
       }
     });
   }
