@@ -67,4 +67,4 @@ Extra API requirements (die samenhangt met het bovenstaande):
 Ook deze week: styling is niet belangrijk. Spendeer niet de veel tijd aan stylen! Focus je eerst op functionaliteiten en daarna pas op stylen (we gaan volgende week lekker stylen, no worries )
 
 ## Screenshot
-![Eindopdracht API ToDo List](./screenshot-eindopdracht-todo-list.png)
+![Eindopdracht API ToDo List](./screenshot-eindopdracht-ToDo-List.png)
